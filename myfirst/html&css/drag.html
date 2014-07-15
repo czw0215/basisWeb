@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<dead>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	<style>
+		#tzbox{height:200px;width:250px;position:absolute;left:10px;top:10px;}
+		#tzbox .header{height:31px;width:250px;background-color:black;}
+		#tzbox .content{height:169px;width:250px;background-color:#333;color:yellow;}
+		#tzbox .header,#tzbox .content{padding:0;margin:0;}
+		#tzbox .header a{color:white;float:right;line-height:30px;text-decoration:none;}
+	</style>
+	<script>
+		window.onload = function(){
+			var oTzbox = document.getElementById("tzbox");
+			var oHeader = oTzbox.getElementsByClassName("header");
+			var oContent = oTzbox.getElementsByClassName("content");
+			var oSpan = oContent[0].getElementsByTagName("span");
+			var oA = oHeader[0].getElementsByTagName("a");
+			var tzflag = false;
+			var disX = disY = 0;
+			var aOp = [];
+
+			oHeader[0].onmousedown = function(event){
+				var event = event || window.event;
+				disX = event.clientX -oTzbox.offsetLeft;
+				disY = event.clientY - oTzbox.offsetTop;
+				tzflag = true;
+				this.setCapture && this.setCapture();
+				show();
+				aOp.push({x:oTzbox.offsetLeft,y:oTzbox.offsetTop});
+
+			};
+			document.onmousemove = function(event){
+				if(tzflag == true){
+					var content = oTzbox.offsetTop;
+					//alert("1"+content+"11");
+					oTzbox.style.top = (event.clientY - disY ) + "px";
+					oTzbox.style.left = (event.clientX - disX ) + "px";
+					aOp.push({x:oTzbox.offsetLeft,y:oTzbox.offsetTop})
+					show();
+				}
+				return false;
+			}
+			document.onmouseup = window.onblur = oHeader[0].onlosecapture  = function(){
+				tzflag = false;
+				oHeader[0].releaseCapture && oheader[0].releaseCapture();
+				//alert(tzflag);
+				aOp.push({x:oTzbox.offsetLeft,y:oTzbox.offsetTop})
+				show();
+			}
+			function show(){
+				oSpan[0].innerText = tzflag;
+				oSpan[1].innerText = oTzbox.offsetTop;
+				oSpan[2].innerText = oTzbox.offsetLeft;
+			}
+			oA[0].onclick = function(){
+				var  time =setInterval(function(){
+					var pos = aOp.pop();
+					pos ?(oTzbox.style.top = pos.y +"px",oTzbox.style.left = pos.x + "px",show()):(clearInterval(time));
+				},30);
+			}
+			show();
+		}
+	</script>
+</dead>
+<body>
+	<div id="tzbox">
+		<div class="header">
+			<a href="javascript:;">回放拖拽过程</a>
+		</div>
+		<div class="content">
+			Drog:<span></span><br/>
+			offsetTop:<span></span><br/>
+			offsetLeft:<span></span>
+		</div>
+	</div>
+	<footer id="mypage_footer">
+	<div class="mypage_footer_right">
+		<ul class="footer_nav_ul">
+			<li><a href="animate.html" target="_self">上一页</a></li>
+			<li><a href="../index.html" target="_self">首页</a></li>
+			<li><a href="linkage.html" target="_self">下一页</a></li>
+		</ul>
+	</div>
+</footer>
+</body>
+</html>

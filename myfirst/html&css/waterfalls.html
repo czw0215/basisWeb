@@ -1,0 +1,74 @@
+<!doctype html>
+  <html>
+  <head>
+  <meta charset="UTF-8"/>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link rel="stylesheet" href="../css/base.css"/>
+  <style>
+  *{padding:0;margin:0;}
+  #wrap{position:relative;zoom:1;margin:0px auto;}
+  #wrap li{width:250px;float:left;list-style:none;}
+  .boxCont{position:relative;margin:15px;border:1px solid #ccc;background:#eee;
+  
+  }
+  
+  </style>
+  </head>
+  <body>
+  <ul id="wrap"></ul>
+  </body>
+  <script type="text/javascript">
+  var $id = function(o){ return document.getElementById(o) || o};
+  function sort(el){
+  var h = [];
+  var box = el.getElementsByTagName("li");
+  var minH = box[0].offsetHeight,
+  boxW = box[0].offsetWidth,
+  boxH,
+  n = document.documentElement.offsetWidth / boxW | 0; //计算页面能排下多少Pin
+  el.style.width = n * boxW + "px";
+  for(var i = 0; i < box.length; i++) {
+  boxh = box[i].offsetHeight; //获取每个Pin的高度
+  if(i < n) { //第一行Pin以浮动排列，不需绝对定位
+  h[i] = boxh;
+  box[i].style.position = '';
+  } else {
+  minH = Math.min.apply({},h); //取得各列累计高度最低的一列
+  minKey = getarraykey(h, minH);
+  h[minKey] += boxh ; //加上新高度后更新高度值
+  box[i].style.position = 'absolute';
+  box[i].style.top = minH + 'px';
+  box[i].style.left = (minKey * boxW) + 'px';
+  }
+  }
+  };
+  /* 返回数组中某一值的对应项数 */
+  function getarraykey(s, v) {
+  for(k in s) {
+  if(s[k] == v) {
+  return k;
+  }
+  }
+  };
+  /* 随机创建Pin */
+  var pin = '';
+  for(i = 0; i < 30; i++) {
+  height = Math.floor(Math.random()*200 + 200);
+  pin += '<li><div class="boxCont" style="height:' + height + 'px;">'+i+'</div></li>';
+  };
+  $id("wrap").innerHTML = pin;
+  window.onload = window.onresize = function() {
+  sort($id("wrap"));
+  };
+  </script>
+  <footer id="mypage_footer">
+    <div class="mypage_footer_right">
+      <ul class="footer_nav_ul">
+        <li><a href="slidePhoto.html" target="_self">上一页</a></li>
+        <li><a href="../index.html" target="_self">首页</a></li>
+        <li><a href="autoHeightWidth.html" target="_self">下一页</a></li>
+      </ul>
+    </div>
+  </footer>
+  </html>

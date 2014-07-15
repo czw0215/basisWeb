@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	<style>
+	.myDiv{width:400px;height:300px;}
+	a:link {color: #FF0000}     /* 未访问的链接 */
+	a:visited {color: black}  /* 已访问的链接 */
+	a:hover {color: #FF00FF}    /* 当有鼠标悬停在链接上 */
+	a:active {color: #0000FF} 
+	input:focus{ color:yellow;}
+	p:first-child{font-weight:bold}
+	q:lang(no){quotes: "~" "~"}
+
+	</style>
+	<script>
+	var inputsInit = (function(){
+						//输入表单
+						var myForm = null;
+						//输入应提示的属性类型
+						var myInputsType = [":hover"];
+						//输入应提示的属性所对应的值
+						var myInputsValue = [""]
+						//生成表单input
+						function initForm(myForm){
+							var createInput = null;
+							var inputString = "";
+							for (var i = myInputsType.length - 1; i >= 0; i--) {
+								inputString += "<input type='text'/> ";
+							}
+							inputString +="<input type='button' value='提交'/>" 
+							myForm.innerHTML = inputString;
+						}
+						function loadMyInputsValue(myDiv){
+							for (var i = myInputsValue.length - 1; i >= 0; i--) {
+								myDiv.style[myInputsType[i]] = myInputsValue[i];
+							};
+						}
+						var inputsInit = function(inputs,myDiv,Forms){
+							myform = Forms;
+							initForm(Forms);
+							loadMyInputsValue(myDiv);
+							for (var i = myInputsType.length - 1; i >= 0; i--) {
+								inputs[i].placeholder = myInputsType[i];
+								inputs[i].value = myInputsValue[i];
+							};
+							inputs[inputs.length-1].onclick = function(){
+								for (var i = inputs.length - 2; i >= 0; i--) {
+									myDiv.style[myInputsType[i]] = inputs[i].value;
+								};
+							};
+						};
+						
+						return inputsInit;
+					}());
+	
+	window.onload = function(){
+		var myDiv = document.getElementsByClassName("myDiv")[0];
+		var inputs = document.getElementsByTagName("input");
+		var myForm = document.getElementById("myForm");
+		inputsInit(inputs,myDiv,myForm);
+		
+	};
+	</script>
+</head> 
+<body>
+	<a class="myDiv" href="">
+		我是超链接
+	</a>
+	<p>Some text <q lang="no">A quote in a paragraph</q> Some text.</p>
+
+
+	<form id="myForm">	
+		
+	</form>
+	<p>	
+		a:link {color: #FF0000}     /* 未访问的链接 */<br/>
+		<span>a:visited {color: black}</span>  /* 已访问的链接 */<br/>
+		a:hover {color: #FF00FF}    /* 当有鼠标悬停在链接上 */<br/>
+		a:active {color: #0000FF} <br/>
+		input:focus{ color:yellow;}<br/>
+		p:first-child{font-weight:bold}<br/>
+		q:lang(no){quotes: "~" "~"}</p><br/>
+		<footer id="mypage_footer">
+		<div class="mypage_footer_right">
+			<ul class="footer_nav_ul">
+				<li><a href="table.html" target="_self">上一页</a></li>
+				<li><a href="../index.html" target="_self">首页</a></li>
+				<li><a href="pseudoElements.html" target="_self">下一页</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

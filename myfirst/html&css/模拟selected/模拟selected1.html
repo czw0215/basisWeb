@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>模拟selected</title>
+	<style>
+	
+	body{background:#23384e;}
+		#search,#search .box,#search form,#search .select,#search a{background:url(img/search.jpg) no-repeat;}
+		#search{position:relative;width:350px;margin:10px auto;font:12px/1.5 \5fae\8f6f\96c5\9ed1;}
+		#search .box{ overflow:hidden;height:34px;width:350px;padding:0;margin:0; background-position: right 0;}
+		#search form{background-repeat:repeat-x;height:34px;width:290px;margin:0 20px 0 40px;background-position:0 -34px;}
+		#search form .select{height:22px;padding-left:10px;width:190px;cursor:pointer;background-position:0 -68px;line-height:22px;float:left;margin-top:4px;color:#fff;}
+		#search form a{height:24px;line-height:24px;width:80px;margin:4px 0 0 10px;background-position:0 -90px;float:left;text-decoration:none;text-align:center;letter-spacing:5px;color:#333;}
+		#search a:hover{color:#f60;background-position:-80px -90px;}
+		#search .sub{background-color:#333;position:absolute;top:26px;left:40px;margin:0;padding:0;width:198px;list-style:none;border:1px solid #fff;display:none;}
+		#search .sub li{padding-left:10px;border-top:1px dotted #fff;height:26px;margin-top:-1px;cursor:pointer;line-height:26px;color: white}
+		#search .sub li.hover{background:#8b8b8b;}
+	</style>
+	<script>
+		window.onload = function(){
+			//alert("jjjjjjj");
+			var oSearch = document.getElementById("search");
+			var oSelect = oSearch.getElementsByClassName("select");
+			var oSub = oSearch.getElementsByClassName("sub");
+			var aLi = oSub[0].getElementsByTagName("li");
+			
+			var i = 0;
+
+			//鼠标点击选择框，产生下拉列表或关闭下拉列表
+			oSelect[0].onmousedown = function(){
+				oSub[0].style.display =  (oSub[0].style.display == "block" ? "none" : "block" );
+				(event || window.event).cancelBubble = true
+			}
+			//滑过复选框背景颜色变浅
+			for(i = 0; i < aLi.length; i++){
+				aLi[i].onmouseover = function(){
+					this.className = "hover";
+				}
+			}
+			//离开复选框背景颜色恢复
+			for(i = 0; i < aLi.length; i++){
+				aLi[i].onmouseout = function(){
+					this.className = "";
+				}
+
+				aLi[i].onmousedown = function(){
+					oSelect[0].innerText = this.innerText;
+				}
+			}
+			document.onmousedown = function(){
+				oSub[0].style.display = "none"
+			}
+
+		};
+	</script>
+</head>
+<body>
+	<div id="search">
+		<div class="box">
+			<form >
+				<span class="select">请选择游戏</span>
+				<a href="">搜索</a>
+			</form>
+		</div>
+		<ul class="sub">
+			<li>地下城与勇士</li>
+	        <li>魔兽世界（国服）</li>
+	        <li>魔兽世界（台服）</li>
+	        <li>热血江湖</li>
+	        <li>神鬼传奇</li>
+	        <li>大话西游II</li>
+	        <li>QQ幻想世界</li>
+		</ul>
+	</div>
+
+</body>
+</html>

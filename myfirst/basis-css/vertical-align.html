@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	<style>
+	.myDiv{width:400px;height:300px;}
+	</style>
+	<script>
+	var inputsInit = (function(){
+						//输入表单
+						var myForm = null;
+						//输入应提示的属性类型
+						var myInputsType = ["verticalAlign"];
+						//输入应提示的属性所对应的值
+						var myInputsValue = ["bottom"]
+						//生成表单input
+						function initForm(myForm){
+							var createInput = null;
+							var inputString = "";
+							for (var i = myInputsType.length - 1; i >= 0; i--) {
+								inputString += "<input type='text'/> ";
+							}
+							inputString +="<input type='button' value='提交'/>" 
+							myForm.innerHTML = inputString;
+						}
+						function loadMyInputsValue(myDiv){
+							for (var i = myInputsValue.length - 1; i >= 0; i--) {
+								myDiv.style[myInputsType[i]] = myInputsValue[i];
+							};
+						}
+						var inputsInit = function(inputs,myDiv,Forms){
+							myform = Forms;
+							initForm(Forms);
+							loadMyInputsValue(myDiv);
+							for (var i = myInputsType.length - 1; i >= 0; i--) {
+								inputs[i].placeholder = myInputsType[i];
+								inputs[i].value = myInputsValue[i];
+							};
+							inputs[inputs.length-1].onclick = function(){
+								for (var i = inputs.length - 2; i >= 0; i--) {
+									myDiv.style[myInputsType[i]] = inputs[i].value;
+								};
+							};
+						};
+						
+						return inputsInit;
+					}());
+	
+	window.onload = function(){
+		var myDiv = document.getElementsByClassName("myDiv")[0];
+		var inputs = document.getElementsByTagName("input");
+		var myForm = document.getElementById("myForm");
+		inputsInit(inputs,myDiv,myForm);
+		
+	};
+	</script>
+</head> 
+<body>
+	<p>这是<img src="../images/css-cute.gif" alt="图片"class="myDiv">图片</p>
+		
+
+	<form id="myForm">	
+		
+	</form>
+	<p>baseline 默认。元素放置在父元素的基线上。<br/> 
+sub 垂直对齐文本的下标。 <br/> 
+super 垂直对齐文本的上标 <br/> 
+top 把元素的顶端与行中最高元素的顶端对齐 <br/> 
+text-top 把元素的顶端与父元素字体的顶端对齐 <br/> 
+middle 把此元素放置在父元素的中部。 <br/> 
+bottom 把元素的顶端与行中最低的元素的顶端对齐。 <br/> 
+text-bottom 把元素的底端与父元素字体的底端对齐。<br/>  
+length   
+% 使用 "line-height" 属性的百分比值来排列此元素。允许使用负值。 <br/> 
+inherit 规定应该从父元素继承 vertical-align 属性的值。 <br/> 
+</p>
+<footer id="mypage_footer">
+		<div class="mypage_footer_right">
+			<ul class="footer_nav_ul">
+				<li><a href="visibility&Z-index.html" target="_self">上一页</a></li>
+				<li><a href="../index.html" target="_self">首页</a></li>
+				<li><a href="text-basis.html" target="_self">下一页</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

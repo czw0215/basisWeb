@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表单</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	</head> 
+<body>
+	<form action="提交的url" methon="get" target="_blank" name="myForm" id="formId">
+		<fieldset  name="myfieldset" form="formId">
+			<legend>必填信息</legend>
+			<label for="yourName">Your name</label><input id="yourName" type="text"/>
+			<label for="yourPhone">Your phone</label><input id="yourPhone" type="text"/>
+			<label for="yourPassword">your password</label><input maxlength=8 id="yourPassword" type="password"/>
+		</fieldset>
+
+		<fieldset disabled="disabled" name="myfieldset" form="formId">
+			<label for="yourName">Your name</label><input id="yourName" type="text"/>
+			<label for="yourPhone">Your phone</label><input id="yourPhone" type="text"/>
+		</fieldset>
+
+		<br/>
+		<label for="male">Male</label>
+		<input type="radio" name="sex" id="male" />
+		<label for="female">Female</label>
+		<input type="radio" checked="checked"  name="sex" id="female"/>
+
+		<br/>
+		<select size=1 multiple="multiple"  name="selectedName">
+			<optgroup label="Famouse car">
+				<option value="Volvo1">Volvo1</option>
+				<option selected="selected" value="Volvo2">Volvo2</option>
+			</optgroup>
+			<optgroup label="Famouse car" disabled="disabled">
+				<option value="Volvo3">Volvo3</option>
+				<option  value="Volvo4">Volvo4</option>
+			</optgroup>
+			<optgroup label="Famouse car" >
+				<option value="Volvo5">Volvo5</option>
+				<option selected="selected" value="Volvo6">Volvo6</option>
+			</optgroup>
+		</select>
+		
+		<br/>
+		<input type="checkbox"  name="vehicle" value="Bike" /> I have a bike<br />
+		<input type="checkbox" name="vehicle" value="Car" /> I have a car<br />
+		<input type="checkbox" checked="checked"  name="vehicle" value="Airplane" /> I have an airplane<br />
+
+		<br/>
+		<input type="file" />
+
+		<br/>
+		<input type="hidden" name="country" value="Norway" />
+
+		<br/>
+		<input type="image" src="submit.gif" alt="Submit" />
+
+		<br/>
+		<textarea cols="10" rows="10" name="myTextarea" readonly="readonly">12343242342fffffffffffffffffffffffffffffffff</textarea>
+
+		<br/>
+		<input type="submit" value="Submit" />
+		<input type="button" value="Button"/>
+		<button type="reset">重置</button>
+		<input type="reset" value="Reset"/>
+	</form>
+	<footer id="mypage_footer">
+		<div class="mypage_footer_right">
+			<ul class="footer_nav_ul">
+				<li><a href="image.html" target="_self">上一页</a></li>
+				<li><a href="../index.html" target="_self">首页</a></li>
+				<li><a href="tables.html" target="_self">下一页</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

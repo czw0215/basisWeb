@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	<style>
+	.myDiv{width:400px;height:300px;border:1px solid black;}
+	</style>
+	<script>
+	var inputsInit = (function(){
+						//输入表单
+						var myForm = null;
+						//输入应提示的属性类型
+						var myInputsType = ["color","direction","letterSpacing","lineHeight","textDecoration","text-indent","textTransform","unicodeBidi","whiteSpace","wordSpacing"];
+						//输入应提示的属性所对应的值
+						var myInputsValue = ["red","ltr","normal","2","blink","50px","capitalize","embed","pre-wrap","2px"];
+						//生成表单input
+						function initForm(myForm){
+							var createInput = null;
+							var inputString = "";
+							for (var i = myInputsType.length - 1; i >= 0; i--) {
+								inputString += "<input type='text'/> ";
+							}
+							inputString +="<input type='button' value='提交'/>" 
+							myForm.innerHTML = inputString;
+						}
+						function loadMyInputsValue(myDiv){
+							for (var i = myInputsValue.length - 1; i >= 0; i--) {
+								myDiv.style[myInputsType[i]] = myInputsValue[i];
+							};
+						}
+						var inputsInit = function(inputs,myDiv,Forms){
+							myform = Forms;
+							initForm(Forms);
+							loadMyInputsValue(myDiv);
+							for (var i = myInputsType.length - 1; i >= 0; i--) {
+								inputs[i].placeholder = myInputsType[i];
+								inputs[i].value = myInputsValue[i];
+							};
+							inputs[inputs.length-1].onclick = function(){
+								for (var i = inputs.length - 2; i >= 0; i--) {
+									myDiv.style[myInputsType[i]] = inputs[i].value;
+								};
+							};
+						};
+						
+						return inputsInit;
+					}());
+	
+	window.onload = function(){
+		var myDiv = document.getElementsByClassName("myDiv")[0];
+		var inputs = document.getElementsByTagName("input");
+		var myForm = document.getElementById("myForm");
+		inputsInit(inputs,myDiv,myForm);
+		
+	};
+	</script>
+</head> 
+<body>
+	<div class="myDiv">For      this part, you are allowed 30 minutes to write an essay on happiness by referring to the saying “Happiness is not the absence of problems, but the ability to deal with them.” 
+	You can cite examples to illustrate your point and then explain how you can develop your ability to deal with problems and be happy. You should write at least 150 words but no more than 200 words.
+	</div>
+
+	<form id="myForm">	
+		
+	</form>
+	<p>text-decoration在IE、Chrome 或 Safari 不支持 "blink" 属性值。</p>
+	<footer id="mypage_footer">
+		<div class="mypage_footer_right">
+			<ul class="footer_nav_ul">
+				<li><a href="vertical-align.html" target="_self">上一页</a></li>
+				<li><a href="../index.html" target="_self">首页</a></li>
+				<li><a href="table.html" target="_self">下一页</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

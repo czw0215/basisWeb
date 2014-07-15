@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	<style>
+	.myDiv{width:400px;height:300px;background-color:red;position:absolute;}
+	.myDivFixed{width:400px;height:300px;background-color:green;position:absolute;left:100px;top:100px;}
+	#myForm{position:absolute;left:100px;bottom:100px;}
+	</style>
+	<script>
+	var inputsInit = (function(){
+						//输入表单
+						var myForm = null;
+						//输入应提示的属性类型
+						var myInputsType = ["visibility","zIndex"];
+						//输入应提示的属性所对应的值
+						var myInputsValue = ["visible","10"]
+						//生成表单input
+						function initForm(myForm){
+							var createInput = null;
+							var inputString = "";
+							for (var i = myInputsType.length - 1; i >= 0; i--) {
+								inputString += "<input type='text'/> ";
+							}
+							inputString +="<input type='button' value='提交'/>" 
+							myForm.innerHTML = inputString;
+						}
+						function loadMyInputsValue(myDiv){
+							for (var i = myInputsValue.length - 1; i >= 0; i--) {
+								myDiv.style[myInputsType[i]] = myInputsValue[i];
+							};
+						}
+						var inputsInit = function(inputs,myDiv,Forms){
+							myform = Forms;
+							initForm(Forms);
+							loadMyInputsValue(myDiv);
+							for (var i = myInputsType.length - 1; i >= 0; i--) {
+								inputs[i].placeholder = myInputsType[i];
+								inputs[i].value = myInputsValue[i];
+							};
+							inputs[inputs.length-1].onclick = function(){
+								for (var i = inputs.length - 2; i >= 0; i--) {
+									myDiv.style[myInputsType[i]] = inputs[i].value;
+								};
+							};
+						};
+						
+						return inputsInit;
+					}());
+	
+	window.onload = function(){
+		var myDiv = document.getElementsByClassName("myDiv")[0];
+		var inputs = document.getElementsByTagName("input");
+		var myForm = document.getElementById("myForm");
+		inputsInit(inputs,myDiv,myForm);
+		
+	};
+	</script>
+</head> 
+<body>
+	<div class="myDiv">
+		
+	</div>
+	<div class="myDivFixed">
+		
+	</div>
+
+	<form id="myForm">	
+		
+	</form>
+	<p style="float:right">在均是absolute时z-index有作用;在visibility为hidden时，仍然占用文档流</p>
+	<footer id="mypage_footer">
+		<div class="mypage_footer_right">
+			<ul class="footer_nav_ul">
+				<li><a href="overflow&Cursor.html" target="_self">上一页</a></li>
+				<li><a href="../index.html" target="_self">首页</a></li>
+				<li><a href="vertical-align.html" target="_self">下一页</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

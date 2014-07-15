@@ -1,0 +1,73 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style>
+		#result{width:200px;height:300px;color:blue;background-color: red;}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#ajax_test").click(function(){
+				var param = $(".formdata").serialize();//序列化输入数据
+				$.ajax({
+					url:"ajax_json.php",
+					type:"POST",
+					data:param,
+					dataType:"json",
+					success:updata//回调函数
+				});
+			});
+			$("#post_test").click(function(){
+				$.post("ajax_json.php",
+				{
+					username:$("#input1").val(),
+					age:$("#input2").val(),
+					sex:$("#input3").val(),
+					phone:$("#input4").val()
+				},
+				function(data){
+					var myjson = "";
+					eval("myjson=" + data + ";");
+					$("#result").html("username:"+myjson.username);
+				});
+			});
+			$("#get_test").click(function(){
+				$.get(
+					"ajax_json.php",
+					{
+						username:$("#input1").val(),
+						age:$("#input2").val(),
+						sex:$("#input3").val(),
+						phone:$("#input4").val()
+					},
+				function(data){
+					var myjson = '';
+					eval('myjson=' + data + ';');
+					$("#result").html(myjson.username);
+				});
+			});
+		});
+		function updata(json){
+			alert(typeof json);
+			var str="姓名:"+json.username+"<br />";
+			str+="年龄:"+json.age+"<br />";
+			str+="性别:"+json.sex+"<br />";
+			str+="电话:"+json.phone+"<br />";
+			str+="追加测试:"+json.append;  
+			$("#result").html(str);
+		}
+	</script>
+</head>
+<body>
+	<div id="result"></div>
+	<form id="myform">
+		<span>姓名：</span><input type="text" value="czw" name="username" id="input1" class="formdata"/><br/>
+		<span>年龄：</span><input type="text" value="23" name="age" id="input2" class="formdata"/><br/>
+		<span>性别：</span><input type="text" value="男" name="sex" id="input3" class="formdata"/><br/>
+		<span>电话：</span><input type="text" value="13340333152" name="phone" id="input4" class="formdata"/><br/>
+		<input type="button" value="提交" id="ajax_test">
+		<input type="button" value="POST提交" id="post_test">
+		<input type="button" value="GET提交" id="get_test">
+	</form>
+</body>
+</html>

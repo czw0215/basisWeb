@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<title>New Document </title>
+<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+<script language="JavaScript" type="text/javascript">
+var city=[
+ ["杭州","宁波","温州","嘉兴","绍兴","金华"],
+ ["南京","苏州","无锡","常州"]
+ ];
+function getCity(){
+ var sltProvince=document.getElementById("province");
+ var sltCity=document.getElementById("city");
+ var provinceCity=city[sltProvince.selectedIndex-1];
+ sltCity.length=1;
+ for(var i=0;i<provinceCity.length;i++){
+ sltCity[i+1]=new Option(provinceCity[i],provinceCity[i]);
+ }
+}
+window.onload = function(){
+	
+function mysubmit(event){
+	var city = document.getElementById("city");
+	var province = document.getElementById("province");
+	if(city.value !=="0" && province.value!=="0"){
+		alert("现在提交");
+	}else{
+		alert("未完成选择");
+		if ( event && event.preventDefault ) 
+	 		event.preventDefault(); 
+		else
+			window.event.returnValue = false; 
+	}
+	city = province =  null;
+	
+}
+	var mybutton = document.getElementById("mybutton");
+	if(mybutton.attachEvent){ 
+	mybutton.attachEvent('onclick',mysubmit);  
+	}else{ 
+	mybutton.addEventListener('click',mysubmit,false); 
+	} 
+}
+
+ </script>
+ </head>
+ <body>
+
+ <form action="action.php" name="theForm">
+ <select name="province" id="province" onchange="getCity()">
+  <option value="0">请选择所在省份</option>
+  <option value="浙江省">浙江省</option>
+  <option value="江苏省">江苏省</option>
+ </select>
+ <select id="city" name="city">
+  <option value="0">请选择</option>
+ </select>
+ <button id="mybutton">提交</button>
+ </form>
+ <footer id="mypage_footer">
+	<div class="mypage_footer_right">
+		<ul class="footer_nav_ul">
+			<li><a href="drag.html" target="_self">上一页</a></li>
+			<li><a href="../index.html" target="_self">首页</a></li>
+			<li><a href="puzzles.html" target="_self">下一页</a></li>
+		</ul>
+	</div>
+</footer>
+ </body>
+ </html>

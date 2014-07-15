@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	<style>
+	.myDiv{width:800px;height:450px;border:1px solid #000;}
+	h1{-webkit-column-span:all;column-span:all;}
+	</style>
+	<script>
+	var inputsInit = (function(){
+						//输入表单
+						var myForm = null;
+						//输入应提示的属性类型
+						var myInputsType = ["MozColumnCount","MozColumnGap","MozColumnRule","MozColumnWidth","WebkitColumnCount","WebkitColumnGap","WebkitColumnRule","WebkitColumnWidth","columnWidth","columnFill"];
+						//输入应提示的属性所对应的值
+						var myInputsValue = [2,"2em","3px outset black","100px",2,"2em","3px outset black","100px","100px","balance"];
+						//生成表单input
+						function initForm(myForm){
+							var createInput = null;
+							var inputString = "";
+							for (var i = myInputsType.length - 1; i >= 0; i--) {
+								inputString += "<input type='text'/> ";
+							}
+							inputString +="<input type='button' value='提交'/>" 
+							myForm.innerHTML = inputString;
+						}
+						function loadMyInputsValue(myDiv){
+							for (var i = myInputsValue.length - 1; i >= 0; i--) {
+								myDiv.style[myInputsType[i]] = myInputsValue[i];
+							};
+						}
+						var inputsInit = function(inputs,myDiv,Forms){
+							myform = Forms;
+							initForm(Forms);
+							loadMyInputsValue(myDiv);
+							for (var i = myInputsType.length - 1; i >= 0; i--) {
+								inputs[i].placeholder = myInputsType[i];
+								inputs[i].value = myInputsValue[i];
+							};
+							inputs[inputs.length-1].onclick = function(){
+								for (var i = inputs.length - 1; i >= 0; i--) {
+									myDiv.style[myInputsType[i]] = inputs[i].value;
+								};
+							};
+						};
+						
+						return inputsInit;
+					}());
+	
+	window.onload = function(){
+		var myDiv = document.getElementsByClassName("myDiv")[0];
+		var inputs = document.getElementsByTagName("input");
+		var myForm = document.getElementById("myForm");
+		inputsInit(inputs,myDiv,myForm);
+		
+	};
+	</script>
+</head> 
+<body>
+	<div class="myDiv">
+		<p>
+			<h1>Happiness – Go for it</h1>
+
+In this long journey we call "life", everybody is in pursuit of happiness and has their own interpretation of happiness. An inspiring idea is that happiness is not the absence of problems, but the ability to deal with them, which reveals the very truth about happiness. It cannot be achieved through waiting, but only through striving.
+
+There is no way that life always progresses as we wish. Problems may occur and we find ourselves in trouble, but it doesn't mean we are deprived of happiness. There are numerous examples for us to follow: disabled people overcoming obstacles, patients fighting against disease, poverty-stricken people achieving their dreams -- all these inspiring heroes. Their lives are definitely not problem-free, but they have found happiness by courageously solving problems.
+
+Therefore, it is essential to develop the ability to deal with problems.  We need to muster our courage and confidence to face the fact. Meanwhile, we need to find effective ways to cope with them.
+
+In a word, if we stay strong and approach problems effectively, there will be no storm in life that we cannot weather. And after the storm, happiness is within our reach.</p>
+	</div>
+
+	<form id="myForm">	
+		
+	</form>
+	<p>Internet Explorer 10 和 Opera 支持 column-gap 属性。
+	Firefox 支持替代的 -moz-column-gap 属性。
+	Safari 和 Chrome 支持替代的 -webkit-column-gap 属性。<br/>
+	本例需要完善</p>
+	<footer id="mypage_footer">
+		<div class="mypage_footer_right">
+			<ul class="footer_nav_ul">
+				<li><a href="box.html" target="_self">上一页</a></li>
+				<li><a href="../index.html" target="_self">首页</a></li>
+				<li><a href="animation.html" target="_self">下一页</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	<script>
+	window.onload = function(){
+
+		var myDiv = document.getElementsByClassName("autoheight")[0];
+		if(window.innerHeight){
+			var myHeight = window.innerHeight - 170 - 24;
+		}else{
+			var myHeight = screen.height - 170 - 24-110;
+		}
+		
+		myDiv.style.height = myHeight + "px";
+		 
+		//alert(myHeight);
+
+
+	}
+	</script>
+<style>
+
+body{ width:100%; height:100%;padding:0 ;margin:0;}
+.top{ height:170px; background-color:#999933;}
+.main{ }
+.left{ width:220px; float:left; height:100%;background-color: green;}
+.right{ margin-left:220px; background-color:#FF0000;height:100%;}
+.footer{ width:100%; height:24px; background-color:#999933;}
+</style>
+</head>
+<body>
+<div class="top"></div>
+<div class="main autoheight">
+<div class="left"></div>
+<div class="right"></div>
+</div>
+<div class="footer"></div>
+<footer id="mypage_footer">
+		<div class="mypage_footer_right">
+			<ul class="footer_nav_ul">
+				<li><a href="waterfalls.html" target="_self">上一页</a></li>
+				<li><a href="../index.html" target="_self">首页</a></li>
+				<li><a href="../basis-jquery/attribute.html" target="_self">下一页</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

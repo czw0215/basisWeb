@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>input新特性</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	<script>
+	window.onload=function(){
+		var a = 2, b = 3;
+		document.forms["myNewForm"]["mul"].value ="a*b=" +a * b + ";   ie8及以前版本不支持output";
+	}
+	</script>
+</head> 
+<body>
+	<form action="" method="get" name="myNewForm">
+		<output name="mul"></output>
+
+		<br/>
+		<input id="myCar" list="cars" placeholder="点击有输入提示" />
+		<datalist id="cars">
+		  <option value="BMW"/>
+		  <option value="Ford"/>
+		  <option value="Volvo"/>
+		</datalist>
+
+		<br/>
+		<input type="text" readonly="readonly" placeholder="只读"/>
+
+		<br/>
+		<input type="text" maxlength=8  placeholder="输入的最大长度为8"/>
+
+		<br/>
+		<input type="text" autocomplete="on" placeholder="自动完成功能(未完成)"/>
+
+		<br/>
+		<input type="text" autofocus="autofocus" placeholder="页面加载完之后获得焦点的输入框"/>
+
+		<br/>
+		<input type="number" min=1 max=4 placeholder="可调范围1-4" style="width:150px"/>
+
+		<br/>
+		<input type="text" name="country_code" pattern="[A-z]{3}"  placeholder="三个字母的国家代码" title="三个字母的国家代码" />
+
+		<br/>
+		<input type="submit" />
+	
+	</form>
+		<p>formaction	URL	覆盖表单的 action 属性。（适用于 type="submit" 和 type="image"）<br/>
+			formenctype	见注释	覆盖表单的 enctype 属性。（适用于 type="submit" 和 type="image"）<br/>
+			formmethod	getpost覆盖表单的 method 属性。（适用于 type="submit" 和 type="image"）<br/>
+			formnovalidate	formnovalidate	覆盖表单的 novalidate属性。如果使用该属性，则提交表单时不进行验证。<br/>
+			formtarget	_blank _self _parent _top framename覆盖表单的 target 属性。(适用于 type)
+		</p>
+ 	<footer id="mypage_footer">
+		<div class="mypage_footer_right">
+			<ul class="footer_nav_ul">
+				<li><a href="../basis-html/tables.html" target="_self">上一页</a></li>
+				<li><a href="../index.html" target="_self">首页</a></li>
+				<li><a href="newImageandProgress.html" target="_self">下一页</a></li>
+			</ul>
+		</div>
+	</footer>
+
+</body>
+</html>

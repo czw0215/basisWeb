@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	<script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+	<script>
+
+	//加载完文档，执行下面代码
+	$(function(){
+		var inputsType = ["选择器","方法名","参数个数","参1","参2","参3","参4"];
+		var inputsDefaulteValue = [".A","one",3,"click","[1,2,3]","fn1","''"];
+		var myForm = $("#myForm");
+		var inputString = "";
+
+		//删除divB
+		function deleteB(){
+			$(".B").remove();
+		}
+		//动态生成divB
+		function createB(){
+			var B = $("<div class='B content-son'>我是B,我拥有的类:content-son B,我是动态生成的</div>");
+			$(B).insertAfter(".content > :last-child");
+		}
+		//为button（生成B注册生成B事件）
+			$("#createB").click(createB);
+			$("#deleteB").click(deleteB);
+		//事件处理函数
+		function fn1(event){
+			var outString = "我是处理函数fn1";
+			if(event.data != null){
+				outString += "\n我的data：" +event.data;
+			}else{
+				outString +="\n我没有data！"
+			}
+			alert(outString);
+			//防止冒泡
+			return false;
+		}
+		function fn2(event){
+			var outString = "我是处理函数fn2";
+			if(event.data !== null){
+				outString += "\n我的data：" +event.data;
+			}else{
+				outString +="\n我没有data！"
+			}
+			alert(outString);
+			//防止冒泡
+			return false;
+		}
+		//循环产生input标签
+		for (var i = 0 ; i < inputsType.length;  i++) {
+			inputString += "<label for="+inputsType[i]+">"+inputsType[i]+": </label><input type='text' id="+inputsType[i]+" class='inputT' value="+inputsDefaulteValue[i]+" /> ";
+		}
+		inputString +="<input type='button' id='mySubmit' value='提交'/>" 
+		myForm.html(inputString);
+		//本例默认开始时，没有任何处理事件，因此把下行注释
+		//showChange();
+		//提交时收集input的value
+		function showChange(){
+			var inputsValue = [];
+			$(".inputT").each(function(index){
+				inputsValue[index] = this.value;
+			});
+			parseFunction(inputsValue);
+		}
+
+		//解析inputs然后执行此属性
+		function parseFunction(array){
+			var result = null;
+			//alert(array[1]);
+			//查看有多少参数，根据参数个数，调用函数
+			switch(parseInt(array[2])){
+				case 1:
+				$(array[0])[array[1]](array[3]);
+				break;
+				case 2:
+				$(array[0])[array[1]](array[3],eval(array[4]));
+				break;
+				case 3:
+				$(array[0])[array[1]](array[3],eval(array[4]),eval(array[5]));
+				case 4:
+				$(array[0])[array[1]](array[3],eval(array[4]),eval(array[5]),eval(array[6]));
+				break;
+				default:
+				alert("参数个数只支持1-4个");
+			}
+		}
+		//为提交注册处理是事件
+		$("#mySubmit").bind("click",function(){
+			showChange();
+		});
+	
+	});
+	</script>
+</head> 
+<body>
+	<div class="content">
+		<div class='A content-son'>我是A,我拥有的类:content-son A
+		</div>
+	</div>
+	<form id="myForm">		
+	</form>
+	<input id="createB" type="button" value="生成B"/>
+	<input id="deleteB" type="button" value="删除B"/>
+	<p>本例中参数中如果为字符串，请加引号<span class="emphasize">操作完后，请刷新网页，以清理注册事件；有注册函数fn1，fn2;</span></p>
+	<table class="explanation">
+		<thead>
+			<tr>
+				<th class="explanation_left">方法</th><th class="explanation_right">本例支持的演示</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="explanation_left">one(type,[data],fn)</td><td class="explanation_right">为每一个匹配元素的特定事件（像click）绑定一个一次性的事件处理函数。<span class="emphasize">也支持下例的selected</span></td>
+			</tr>
+			<tr>
+				<td class="explanation_left">on(events,[selector],[data],fn)</td><td class="explanation_right">在选择元素上绑定一个或多个事件的事件处理函数。</td>
+			</tr>
+			<tr>
+				<td class="explanation_left">off(events,[selector],[fn])</td><td class="explanation_right">在选择元素上移除一个或多个事件的事件处理函数。</td>
+			</tr>
+			<tr>
+				<td class="explanation_left">bind(type,[data],fn)</td><td class="explanation_right">为每个匹配元素的特定事件绑定事件处理函数。</td>
+			</tr>
+			<tr>
+				<td class="explanation_left">unbind(type,[data|fn]])</td><td class="explanation_right">bind()的反向操作，从每一个匹配的元素中删除绑定的事件。</td>
+			</tr>
+			<tr>
+				<td class="explanation_left">delegate(selector,[type],[data],fn)</td><td class="explanation_right">指定的元素（属于被选元素的子元素）添加一个或多个事件处理程序，并规定当这些事件发生时运行的函数。</td>
+			</tr>
+			<tr>
+				<td class="explanation_left">undelegate([selector,[type],fn])</td><td class="explanation_right">删除由 delegate() 方法添加的一个或多个事件处理程序。</td>
+			</tr>
+			<tr>
+				<td class="explanation_left">live(type, [data], fn)</td><td class="explanation_right">jQuery 给所有匹配的元素附加一个事件处理函数，即使这个元素是以后再添加进来的也有效。</td>
+			</tr>
+			<tr>
+				<td class="explanation_left">die(type, [fn])</td><td class="explanation_right">从元素中删除先前用.live()绑定的所有事件.(此方法与live正好完全相反。)</td>
+			</tr>
+			<tr>
+				<td class="explanation_left">trigger(type,[data])</td><td class="explanation_right">在每一个匹配的元素上触发某类事件</td>
+			</tr>
+			<tr>
+				<td class="explanation_left">triggerHandler(type, [data])</td><td class="explanation_right">这个特别的方法将会触发指定的事件类型上所有绑定的处理函数。但不会执行浏览器默认动作，也不会产生事件冒泡</td>
+			</tr>
+		</tbody>
+	</table>
+	<footer id="mypage_footer">
+		<div class="mypage_footer_right">
+			<ul class="footer_nav_ul">
+				<li><a href="event-2.html" target="_self">上一页</a></li>
+				<li><a href="../index.html" target="_self">首页</a></li>
+				<li><a href="eventObject-1.html" target="_self">下一页</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

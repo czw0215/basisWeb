@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	<style>
+	.myDiv{width:800px;height:540px;border:1px solid black;}
+	.myDiv:before{content:'url("../images/css-cute.gif")'}
+	body {counter-reset:section;}
+	h1 {counter-reset:subsection;}
+	h1:before
+	{
+	counter-increment:section;
+	content:"Section " counter(section) ". ";
+	}
+	h2:before 
+	{
+	counter-increment:subsection;
+	content:counter(section) "." counter(subsection) " ";
+	}
+	</style>
+</head> 
+<body>
+	<div class="myDiv">
+		<h1>HTML tutorials</h1>
+		<h2>HTML Tutorial</h2>
+		<h2>XHTML Tutorial</h2>
+		<h2>CSS Tutorial</h2>
+
+		<h1>Scripting tutorials</h1>
+		<h2>JavaScript</h2>
+		<h2>VBScript</h2>
+
+		<h1>XML tutorials</h1>
+		<h2>XML</h2>
+		<h2>XSL</h2>
+	</div>
+	<footer id="mypage_footer">
+		<div class="mypage_footer_right">
+			<ul class="footer_nav_ul">
+				<li><a href="pseudoElements.html" target="_self">上一页</a></li>
+				<li><a href="../index.html" target="_self">首页</a></li>
+				<li><a href="../new-css/box.html" target="_self">下一页</a></li>
+			</ul>
+		</div>
+	</footer>
+	
+</body>
+</html>

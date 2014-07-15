@@ -1,0 +1,29 @@
+1.报错 unidentiter
+忘记在setInterval()后面加分号了
+2.报错  Unexpected token {
+忘记给函数加{} 或者（）
+3.报错 未找到指定函数
+var functionname = function() ，定义在后面无法识别；function functionname()定义在后面可以识别
+4.图片无法循环
+复制的for里面的array[]中括号里面的变量未改
+5.Cannot set property 'className' of undefined 
+主要是对象为null
+6.for( i = 0 ; i < nums.length ; i++){
+					nums[i].index = i;
+					nums[i].onmouseover = function(){
+						//nums[i].index = i;
+						show(this.index);
+					}
+				}
+用for循环对onmouseover注册时，需要把对
+#7.ie6不兼容border-radius
+8.absolute不能进行左下定位，可能因为在别处进行了右上定位
+9.background与background-image设置背景为图片的区别
+10.margin:-1px;可以设置表格内的单元格边框使其边框好看格式统一
+11.window.onload不是document.onload
+12.用循环注册事件时，注册的function里面用this不要用索引值i;
+13.Invalid left-hand side in assignment
+14.设置style属性时,为字符串
+15.absolute,是相对于第一个父节点属性不为static的定位，其中static为标签的默认position;
+16.拖拽的时候，div速度大于鼠标，坐标选错了
+17.onload里面定义的方法，在文档标签里面不能用

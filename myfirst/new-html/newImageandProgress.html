@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	</head> 
+	<script type="text/javascript">
+	window.onload=function(){
+		/*var canvas = document.getElementById("mySquare");
+		var content = canvas.getContext("2d");
+		content.fillStyle = "#f00";
+		context.fillRect(0,0,200,150);*/
+
+		var objprogress = document.getElementById("objprogress");
+		var timer = setInterval(function(){ 
+			if(objprogress.value === 1000){
+				clearInterval(timer);
+			}else{
+				objprogress.value += 1;
+			}
+		},100);
+		//alert("objprogress");
+	};
+
+	</script>
+<body>
+	<progress id="objprogress" max=1000 value=0>
+		
+	</progress>
+	<figure>
+		<figcaption>颐和园</figcaption>
+		<img src="../images/html-yiheyuan.jpg" alt="颐和园" />
+	</figure>
+	<canvas id="mySquare" width=300 height=300> </canvas>
+	<p>canvas未实现功能</p>
+	<footer id="mypage_footer">
+		<div class="mypage_footer_right">
+			<ul class="footer_nav_ul">
+				<li><a href="newForms.html" target="_self">上一页</a></li>
+				<li><a href="../index.html" target="_self">首页</a></li>
+				<li><a href="newLayout.html" target="_self">下一页</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>
